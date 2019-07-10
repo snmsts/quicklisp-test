@@ -14,5 +14,5 @@ exec ros -Q -- $0 "$@"
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-  (mapcar (lambda (x) (ignore-errors (ql:quickload x))) (uiop:split-string (uiop:gentenv "TEST_SYSTEM") :separator (list #\:))))
+  (mapcar (lambda (x) (ignore-errors (ql:quickload x))) (uiop:split-string (uiop:getenv "TEST_SYSTEM") :separator (list #\:))))
 ;;; vim: set ft=lisp lisp:
