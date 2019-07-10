@@ -1,0 +1,18 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#|
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  ;;#+quicklisp(ql:quickload '() :silent t)
+  )
+
+(defpackage :ros.script.system-build.3771781249
+  (:use :cl))
+(in-package :ros.script.system-build.3771781249)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (mapcar (lambda (x) (ignore-errors (ql:quickload x))) (uiop:split-string (uiop:gentenv "TEST_SYSTEM") :separator (list #\:))))
+;;; vim: set ft=lisp lisp:

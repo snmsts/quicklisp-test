@@ -4,7 +4,7 @@ dist: xenial
 env:
   global:
     - PATH=~/.roswell/bin:~/.linuxbrew/bin:$PATH
-    - ROSWELL_BRANCH=master
+    - ROSWELL_BRANCH=release
     - ROSWELL_INSTALL_DIR=$HOME/.roswell
     - ROSWELL_QUICKLISP_DIST_URI=https://github.com/roswell/quicklisp/releases/download/dist/quicklisp.txt
     - LISP=sbcl-bin
@@ -18,4 +18,4 @@ os:
 
 script:
   - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
-  - ros -e '(mapcar (lambda (x) (ignore-errors (ql:quickload x))) (uiop:split-string (uiop:gentenv "TEST_SYSTEM") :separator (list #:)))'
+  - ros system-build.ros
